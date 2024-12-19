@@ -34,4 +34,5 @@ build/
 
 ### Environment ###
 /sql-test
+/sql-converted
 /backup-test
