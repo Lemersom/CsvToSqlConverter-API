@@ -21,7 +21,18 @@ public class SQLGeneratorTest {
 
         try {
             String sqlFilePath = sqlFileService.convertCsvToSQL(csvFilePath);
+            assertTrue(new File(sqlFilePath).exists());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    @Test
+    public void shouldGenerateInsert() {
+        String csvFilePath = "./backup-test/testdb/2024-12-17_16-13-26/customers_data.csv";
+
+        try {
+            String sqlFilePath = sqlFileService.convertCsvToSQL(csvFilePath);
             assertTrue(new File(sqlFilePath).exists());
         } catch (Exception e) {
             throw new RuntimeException(e);

@@ -25,13 +25,18 @@ public class SQLFileService {
         String csvFileWithoutExtension = csvFileName.split("\\.")[0];
 
         String query = "";
+        String tableName = "";
+
+        if(csvFileName.contains("_")) {
+            tableName = csvFileName.split("_")[0];
+        } else {
+            tableName = csvFileName;
+        }
 
         if(csvFileName.contains("_") && csvFileName.contains("schema")) {
-            // SQL CREATE file
-            String tableName = csvFileName.split("_")[0];
-            query = handleCreateGenerator(csvFilePath, tableName);
+            query = handleCreateGenerator(csvFilePath, tableName);  // SQL CREATE file
         } else {
-            // SQL INSERT file
+            query = handleInsertGenerator(csvFilePath, tableName);  // SQL INSERT file
         }
 
         String date = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new java.util.Date());
@@ -56,6 +61,16 @@ public class SQLFileService {
             List<String[]> csvData = CsvUtil.readFromCsv(csvFilePath);
 
             return SQLGenerator.generateCreate(tableName, csvData);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String handleInsertGenerator(String csvFilePath, String tableName) {
+        try {
+            List<String[]> csvData = CsvUtil.readFromCsv(csvFilePath);
+
+            return SQLGenerator.generateInsert(tableName, csvData);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
