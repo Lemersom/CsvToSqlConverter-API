@@ -23,7 +23,7 @@ public class SQLGenerator {
         return query.toString();
     }
 
-    // INSERT INTO table_name (column1, column2, ...) VALUES (value1, value2, ...);
+    // INSERT INTO table_name (column1, column2, ...) VALUES ('value1', 'value2', ...);
     public static String generateInsert(String tableName, List<String[]> csvData) {
         StringBuilder queryComplete = new StringBuilder();
         StringBuilder queryStart = new StringBuilder("INSERT INTO ");
