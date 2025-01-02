@@ -13,12 +13,12 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Service
-public class SQLFileService {
+public class SQLConverterService {
 
     @Value("${sql.directory}")
     private String sqlDirectory;
 
-    public String convertCsvToSQL(String csvFilePath) {
+    public String convertCSVToSQL(String csvFilePath) {
         int lastSlashIndex = csvFilePath.lastIndexOf('/');
         String csvFileName = csvFilePath.substring(lastSlashIndex + 1);
         String pathWithoutCsvFile = csvFilePath.substring(0, lastSlashIndex + 1);

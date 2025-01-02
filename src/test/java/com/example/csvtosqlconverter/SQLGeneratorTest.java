@@ -1,6 +1,6 @@
 package com.example.csvtosqlconverter;
 
-import com.example.csvtosqlconverter.service.SQLFileService;
+import com.example.csvtosqlconverter.service.SQLConverterService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,14 +13,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SQLGeneratorTest {
 
     @Autowired
-    SQLFileService sqlFileService;
+    SQLConverterService sqlConverterService;
 
     @Test
     public void shouldGenerateCreate() {
         String csvFilePath = "./backup-test/testdb/2024-12-17_16-13-26/customers_schema.csv";
 
         try {
-            String sqlFilePath = sqlFileService.convertCsvToSQL(csvFilePath);
+            String sqlFilePath = sqlConverterService.convertCSVToSQL(csvFilePath);
             assertTrue(new File(sqlFilePath).exists());
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -32,7 +32,7 @@ public class SQLGeneratorTest {
         String csvFilePath = "./backup-test/testdb/2024-12-17_16-13-26/customers_data.csv";
 
         try {
-            String sqlFilePath = sqlFileService.convertCsvToSQL(csvFilePath);
+            String sqlFilePath = sqlConverterService.convertCSVToSQL(csvFilePath);
             assertTrue(new File(sqlFilePath).exists());
         } catch (Exception e) {
             throw new RuntimeException(e);
