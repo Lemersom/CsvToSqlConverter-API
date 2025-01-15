@@ -57,3 +57,8 @@ This project is an API developed in Java Spring, designed to convert CSV files i
   ```
   CREATE TABLE customers (customerid int4, name varchar, birthdate date, email varchar, isactive bool);
   ```
+
+# Related Repositories
+
+* [DatabaseBackup-API](https://github.com/Lemersom/DatabaseBackup-API)
+* [DBBackupScheduler-API](https://github.com/Lemersom/DBBackupScheduler-API)
